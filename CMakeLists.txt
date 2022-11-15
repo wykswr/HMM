@@ -3,4 +3,4 @@ project(HMM)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(HMM main.cpp Viterbi.cpp Viterbi.h)
+add_executable(HMM main.cpp AlignmentModel.cpp AlignmentModel.h AlignmentModelProb.cpp AlignmentModelProb.h)

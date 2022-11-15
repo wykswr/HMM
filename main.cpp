@@ -1,6 +1,8 @@
-// @author Yukai Wang, student#: 34271296
+// @author Yukai Wang
+// Student#: 34271296
 #include <iostream>
-#include "Viterbi.h"
+#include "AlignmentModel.h"
+#include "AlignmentModelProb.h"
 #include <fstream>
 #include <tuple>
 #include <sstream>
@@ -34,11 +36,11 @@ tuple<vector<string>, vector<string>> read_file(const string &path) {
 tuple<vector<string>, vector<string>> align(const tuple<vector<string>, vector<string>> &sequences) {
     auto &seq1 = get<0>(sequences);
     auto &seq2 = get<1>(sequences);
-    vector<string> states, alignments;
     if (seq1.size() != seq2.size())
         throw runtime_error("Pairs' number doesn't match!");
+    vector<string> states, alignments;
     for (int i = 0; i < seq1.size(); ++i) {
-        auto hmm = Viterbi(seq1[i], seq2[i]);
+        auto hmm = AlignmentModel(seq1[i], seq2[i]);
         auto state = hmm.hidden_chain();
         stringstream st;
         copy(state.begin(), state.end(), std::ostream_iterator<int>(st, ""));
@@ -50,10 +52,24 @@ tuple<vector<string>, vector<string>> align(const tuple<vector<string>, vector<s
     return make_tuple(states, alignments);
 }
 
+vector<double> forward(const tuple<vector<string>, vector<string>> &sequences) {
+    auto &seq1 = get<0>(sequences);
+    auto &seq2 = get<1>(sequences);
+    if (seq1.size() != seq2.size())
+        throw runtime_error("Pairs' number doesn't match!");
+    vector<double> probabilities(seq1.size());
+    for (int i = 0; i < seq1.size(); ++i) {
+        auto hmm = AlignmentModelProb(seq1[i], seq2[i]);
+        probabilities[i] = hmm.forward();
+    }
+    return probabilities;
+}
+
 int main(int argc, char **argv) {
     string fastq, chain_out, alignment_out;
+    bool forward_mode = false;
     vector<string> args(argv + 1, argv + argc);
-    string usage = "Syntax: HMM -i <infile> -a <path output> -b <alignment output>";
+    string usage = "Syntax: HMM [-f] -i <infile> -a <path | probability> -b <alignment>";
     if (argc == 1) {
         cout << usage << endl;
         return 0;
@@ -75,6 +91,19 @@ int main(int argc, char **argv) {
             alignment_out = *++p;
             continue;
         }
+        if (*p == "-f") {
+            forward_mode = true;
+            continue;
+        }
+    }
+    if (forward_mode) {
+        ofstream probabilities;
+        probabilities.open(chain_out);
+        auto result = forward(read_file(fastq));
+        for (auto &r : result)
+            probabilities << r << endl;
+        probabilities.close();
+        return 0;
     }
     ofstream chains, alignments;
     chains.open(chain_out);
