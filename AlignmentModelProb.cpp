@@ -5,6 +5,8 @@
 #include "AlignmentModelProb.h"
 
 double AlignmentModelProb::forward() {
+    if (inferred)
+        return probability;
     for (int i = 0; i < seq1.length(); ++i) {
         for (int j = 0; j < seq2.length(); ++j) {
             match[i][j] = prob(i, j) *
