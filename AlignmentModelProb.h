@@ -13,7 +13,9 @@ private:
     double probability;
 
 public:
+    // Using AlignmentModel's likelihood matrix and DP to get the matching likelihood.
     double forward();
+
     AlignmentModelProb(const std::string &, const std::string &);
 
 };

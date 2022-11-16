@@ -16,7 +16,8 @@ double AlignmentModelProb::forward() {
     }
     int n = static_cast<int>(seq1.length() - 1);
     int m = static_cast<int>(seq2.length() - 1);
-    probability = trans[1][4]*score(match, n, m) + trans[2][4]*score(x_only, n, m) + trans[3][4]*score(y_only, n, m);
+    probability =
+            trans[1][4] * score(match, n, m) + trans[2][4] * score(x_only, n, m) + trans[3][4] * score(y_only, n, m);
     inferred = true;
     return probability;
 }

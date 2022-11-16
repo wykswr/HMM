@@ -1,5 +1,7 @@
-// @author Yukai Wang
-// Student#: 34271296
+/*
+ * @author Yukai Wang
+ * Student#: 34271296
+ */
 #include <iostream>
 #include "AlignmentModel.h"
 #include "AlignmentModelProb.h"
@@ -10,6 +12,9 @@
 using namespace std;
 
 tuple<vector<string>, vector<string>> read_file(const string &path) {
+    /*
+     * Read a paired fastq file into two vectors, if the sequence number is odd, it'll throw an exception
+     */
     ifstream my_file;
     my_file.open(path);
     string line;
@@ -34,6 +39,10 @@ tuple<vector<string>, vector<string>> read_file(const string &path) {
 }
 
 tuple<vector<string>, vector<string>> align(const tuple<vector<string>, vector<string>> &sequences) {
+    /*
+     * Read 2 vectors with same length, do sequence alignment at corresponding location,
+     * output the matching result of each 2 sequences to 2 vectors respectively.
+     */
     auto &seq1 = get<0>(sequences);
     auto &seq2 = get<1>(sequences);
     if (seq1.size() != seq2.size())
@@ -53,6 +62,9 @@ tuple<vector<string>, vector<string>> align(const tuple<vector<string>, vector<s
 }
 
 vector<double> forward(const tuple<vector<string>, vector<string>> &sequences) {
+    /*
+     *  Read 2 vectors with same length, generate the matching likelihood into a vector.
+     */
     auto &seq1 = get<0>(sequences);
     auto &seq2 = get<1>(sequences);
     if (seq1.size() != seq2.size())
@@ -68,6 +80,7 @@ vector<double> forward(const tuple<vector<string>, vector<string>> &sequences) {
 int main(int argc, char **argv) {
     string fastq, chain_out, alignment_out;
     bool forward_mode = false;
+    // Parser the args
     vector<string> args(argv + 1, argv + argc);
     string usage = "Syntax: HMM [-f] -i <infile> -a <path | probability> -b <alignment>";
     if (argc == 1) {
@@ -96,15 +109,17 @@ int main(int argc, char **argv) {
             continue;
         }
     }
+    // Forward only
     if (forward_mode) {
         ofstream probabilities;
         probabilities.open(chain_out);
         auto result = forward(read_file(fastq));
-        for (auto &r : result)
+        for (auto &r: result)
             probabilities << r << endl;
         probabilities.close();
         return 0;
     }
+    // Alignment mode
     ofstream chains, alignments;
     chains.open(chain_out);
     alignments.open(alignment_out);
