@@ -11,24 +11,18 @@ This model utilizes paired hidden markov model (HMM) to find the alignment betwe
 |     | 0   | 1              | 2               | 3               | 4              |
 |-----|-----|----------------|-----------------|-----------------|----------------|
 | 0   | $0$ | $\frac{1}{3}$  | $\frac{1}{3}$   | $\frac{1}{3}$   | $0$            |
-| 1   | $0$ | $\frac{7}{10}$ | $\frac{7}{10}$  | $\frac{1}{10}$  | $\frac{1}{10}$ |
+| 1   | $0$ | $\frac{7}{10}$ | $\frac{1}{10}$  | $\frac{1}{10}$  | $\frac{1}{10}$ |
 | 2   | $0$ | $\frac{1}{4}$  | $\frac{13}{20}$ | $0$             | $\frac{1}{10}$ |
 | 3   | $0$ | $\frac{1}{4}$  | $0$             | $\frac{13}{20}$ | $\frac{1}{10}$ |
 | 4   | $0$ | $0$            | $0$             | $0$             | $0$            |
 
 #### $P_{seq_i, seq_j}$ and $P_{seq_i}$
 
-```math
-seq_i == seq_j, P_{seq_i, seq_j} = \frac{4}{28}
-```
+$seq_i\,==\,seq_j,\,P_{seq_i, seq_j} = \frac{4}{28}$
 
-```math
-seq_i != seq_j, P_{seq_i, seq_j} = \frac{1}{28}
-```
+$seq_i\,!=\,seq_j,\,P_{seq_i, seq_j} = \frac{1}{28}$
 
-```math
-\forall seq_i, P_{seq_i} = \frac{1}{4}
-```
+$\forall seq_i,\,P_{seq_i} = \frac{1}{4}$
 
 ## Usage
 
