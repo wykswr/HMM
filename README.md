@@ -4,6 +4,25 @@
 
 This model utilizes paired hidden markov model (HMM) to find the alignment between 2 sequences.
 
+### Parameters
+
+#### Transition matrix
+
+|     | 0   | 1              | 2               | 3               | 4              |
+|-----|-----|----------------|-----------------|-----------------|----------------|
+| 0   | $0$ | $\frac{1}{3}$  | $\frac{1}{3}$   | $\frac{1}{3}$   | $0$            |
+| 1   | $0$ | $\frac{7}{10}$ | $\frac{7}{10}$  | $\frac{1}{10}$  | $\frac{1}{10}$ |
+| 2   | $0$ | $\frac{1}{4}$  | $\frac{13}{20}$ | $0$             | $\frac{1}{10}$ |
+| 3   | $0$ | $\frac{1}{4}$  | $0$             | $\frac{13}{20}$ | $\frac{1}{10}$ |
+| 4   | $0$ | $0$            | $0$             | $0$             | $0$            |
+
+#### $P_{seq_i, seq_j}$ and $P_{seq_i}$
+```math
+P_{seq_i, seq_j} = \frac{4}{28} if seq_i == seq_j
+P_{seq_i, seq_j} = \frac{1}{28} if seq_i != seq_j
+\forall seq_i, P_{seq_i} = \frac{1}{4}
+```
+
 ## Usage
 
 The model is implemented as a UNIX command line tool, with syntax:
@@ -17,7 +36,9 @@ The model is implemented as a UNIX command line tool, with syntax:
 * `alignment`: The output path of alignment result, and is ignored in forward mode.
 
 ## Compilation
+
 This project is managed by CMake, be sure you have a version over 3.23.
+
 1. Go to the source code directory
 2. `mkdir make-dir`
 3. `cd make-dir`
