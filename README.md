@@ -1,5 +1,7 @@
 # HMM Viterbi Sequence Aligner
 
+![example workflow](https://github.com/wykswr/HMM/actions/workflows/cmake.yml/badge.svg)
+
 ## Algorithm
 
 This model utilizes paired hidden markov model (HMM) to find the alignment between 2 sequences.
