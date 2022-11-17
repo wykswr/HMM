@@ -17,12 +17,15 @@ This model utilizes paired hidden markov model (HMM) to find the alignment betwe
 | 4   | $0$ | $0$            | $0$             | $0$             | $0$            |
 
 #### $P_{seq_i, seq_j}$ and $P_{seq_i}$
+
 ```math
-P_{seq_i, seq_j} = \frac{4}{28} if seq_i == seq_j
+seq_i == seq_j, P_{seq_i, seq_j} = \frac{4}{28}
 ```
+
 ```math
-P_{seq_i, seq_j} = \frac{1}{28} if seq_i != seq_j
+seq_i != seq_j, P_{seq_i, seq_j} = \frac{1}{28}
 ```
+
 ```math
 \forall seq_i, P_{seq_i} = \frac{1}{4}
 ```
