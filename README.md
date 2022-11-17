@@ -1,6 +1,6 @@
 # HMM Viterbi Sequence Aligner
 
-![example workflow](https://github.com/wykswr/HMM/actions/workflows/cmake.yml/badge.svg)
+![cmake workflow](https://github.com/wykswr/HMM/actions/workflows/cmake.yml/badge.svg)
 
 ## Algorithm
 
