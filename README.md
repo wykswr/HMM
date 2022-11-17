@@ -18,11 +18,11 @@ This model utilizes paired hidden markov model (HMM) to find the alignment betwe
 
 #### $P_{seq_i, seq_j}$ and $P_{seq_i}$
 
-$seq_i\,==\,seq_j,\,P_{seq_i, seq_j} = \frac{4}{28}$
+$seq_i \quad ==\quad seq_j,\quad P_{seq_i, seq_j} = \frac{4}{28}$
 
-$seq_i\,!=\,seq_j,\,P_{seq_i, seq_j} = \frac{1}{28}$
+$seq_i \quad != \quad seq_j,\quad P_{seq_i, seq_j} = \frac{1}{28}$
 
-$\forall seq_i,\,P_{seq_i} = \frac{1}{4}$
+$\forall seq_i,\quad P_{seq_i} = \frac{1}{4}$
 
 ## Usage
 
