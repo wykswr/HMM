@@ -2,6 +2,7 @@
  * @author Yukai Wang
  * Student#: 34271296
  */
+#include <iterator>
 #include <iostream>
 #include "AlignmentModel.h"
 #include "AlignmentModelProb.h"

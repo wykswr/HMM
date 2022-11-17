@@ -3,6 +3,7 @@
 // Student#: 34271296
 
 #include "AlignmentModel.h"
+#include <algorithm>
 
 
 AlignmentModel::AlignmentModel(const std::string &seq1, const std::string &seq2)

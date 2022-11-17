@@ -18,3 +18,10 @@ The model is implemented as a UNIX command line tool, with syntax:
 
 ## Compilation
 This project is managed by CMake, be sure you have a version over 3.23.
+1. Go to the source code directory
+2. `mkdir make-dir`
+3. `cd make-dir`
+4. `cmake ..`
+5. `make`
+
+Then find the executable file called "HMM" in make-dir.
