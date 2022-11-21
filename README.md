@@ -38,6 +38,9 @@ The model is implemented as a UNIX command line tool, with syntax:
 * `path | probability`: The output path of inferred hidden states or probability in forward mode.
 * `alignment`: The output path of alignment result, and is ignored in forward mode.
 
+For instance, put pair.txt in the same directory of executable file called "HMM":
+* Get hidden chain and alignment: `./HMM -i ./pair.txt -a ./path_alignment_model.txt -b ./predicted_alignment.txt`
+* Get forward probability: `./HMM -i ./pair.txt -a ./prob_alignment_model.txt -f`
 ## Compilation
 
 This project is managed by CMake, be sure you have a version over 3.23.
