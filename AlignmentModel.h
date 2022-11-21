@@ -23,7 +23,7 @@ protected:
     double prob(int, int) const;
 
     // Getter of likelihood matrix, embedding base case.
-    double score(const std::vector<std::vector<double>> &, int, int) const;
+    static double score(const std::vector<std::vector<double>> &, int, int) ;
 
     // The Vierbi dynamic programming algorithm.
     void infer();
@@ -35,6 +35,7 @@ protected:
     std::vector<int> r_hidden_chain();
 
 public:
+    // Initialize transition matrix and likelihood matrix.
     AlignmentModel(const std::string &, const std::string &);
 
     // Reverse r_hidden_chain
