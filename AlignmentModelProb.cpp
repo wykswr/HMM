@@ -1,6 +1,5 @@
 //
 // Created by Yukai Wang on 2022-11-14.
-// Student#: 34271296
 
 #include "AlignmentModelProb.h"
 

@@ -1,6 +1,5 @@
 //
 // Created by Yukai Wang on 2022-11-07.
-// Student#: 34271296
 
 #include "AlignmentModel.h"
 #include <algorithm>
